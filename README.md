@@ -1,3 +1,23 @@
+# Building DBMS
+
+## Overview
+
+**It is based on the lectures and projects from Carnegie Mellon's CS15445/645 course**
+By following this course lecture and project I aim to acknowledge and understand the full operations of a Database Management System.
+
+## Objectives
+
+- Understand the core concepts of DBMS.
+- Learn how to design and implement efficient database schemas.
+- Gain hands-on experience with SQL and other DBMS operations.
+- Explore advanced topics like indexing, query optimization, and transaction management.
+
+- Speedup by implementing Parallelism using GPU & Machine learning.
+
+
+##Original README
+-----------------
+
 <img src="logo/bustub-whiteborder.svg" alt="BusTub Logo" height="200">
 
 -----------------
