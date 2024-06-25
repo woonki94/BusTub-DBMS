@@ -2,7 +2,6 @@
 
 #include <string>
 #include <vector>
-#include <unordered_set>
 
 namespace bustub {
 
@@ -60,23 +59,7 @@ class ORSet {
   auto ToString() const -> std::string;
 
  private:
-  struct Element {
-    T value;
-    uid_t uid;
-
-    bool operator==(const Element &other) const {
-      return value == other.value && uid == other.uid;
-    }
-  };
-
-  struct ElementHash {
-    std::size_t operator()(const Element &e) const {
-      return std::hash<T>()(e.value) ^ std::hash<uid_t>()(e.uid);
-    }
-  };
-
-  std::unordered_set<Element, ElementHash> element_set;
-  std::unordered_set<uid_t> tombstone_set;
+  // TODO(student): Add your private memeber variables to represent ORSet.
 };
 
 }  // namespace bustub
