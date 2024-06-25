@@ -16,7 +16,7 @@ By following this course lecture and project I aim to acknowledge and understand
 - Speedup by implementing Parallelism using GPU & Machine learning.
 
 
-##Original README
+## Original README
 -----------------
 
 <img src="logo/bustub-whiteborder.svg" alt="BusTub Logo" height="200">
