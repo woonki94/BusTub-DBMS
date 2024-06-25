@@ -3,6 +3,7 @@
 ## Overview
 
 **It is based on the lectures and projects from Carnegie Mellon's CS15445/645 course**
+
 By following this course lecture and project I aim to acknowledge and understand the full operations of a Database Management System.
 
 ## Objectives
