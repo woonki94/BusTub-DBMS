@@ -17,23 +17,49 @@
 #include <mutex>  // NOLINT
 #include <unordered_map>
 #include <vector>
+#include <unordered_set>
 
 #include "common/config.h"
 #include "common/macros.h"
+#include "common/logger.h"
 
 namespace bustub {
 
 enum class AccessType { Unknown = 0, Lookup, Scan, Index };
 
+
 class LRUKNode {
+ public:
+  LRUKNode() = default;
+  explicit LRUKNode(size_t k) : k_(k) {}
+
+  // Getter functions to access private members
+  //auto GetHistory() const -> const std::list<size_t>& { return history_; }
+  auto GetK() const -> size_t { return k_; }
+  auto GetFrameId() const -> frame_id_t { return fid_; }
+  auto IsEvictable() const -> bool { return is_evictable_; }
+  std::list<size_t> history_;
+
+  // Function to add a timestamp to history
+//  void AddTimestamp(size_t timestamp) {
+//    history_.emplace_back(timestamp);
+//    if (history_.size() > k_) {
+//      history_.pop_front();
+//    }
+//  }
+
+  // Function to set evictable status
+  void SetEvictable(bool evictable) { is_evictable_ = evictable; }
+
+  // Function to set frame ID
+  void SetFrameId(frame_id_t frame_id) { fid_ = frame_id; }
  private:
   /** History of last seen K timestamps of this page. Least recent timestamp stored in front. */
   // Remove maybe_unused if you start using them. Feel free to change the member variables as you want.
 
-  [[maybe_unused]] std::list<size_t> history_;
-  [[maybe_unused]] size_t k_;
-  [[maybe_unused]] frame_id_t fid_;
-  [[maybe_unused]] bool is_evictable_{false};
+  size_t k_{};
+  frame_id_t fid_{0};
+  bool is_evictable_{false};
 };
 
 /**
@@ -79,7 +105,7 @@ class LRUKReplacer {
    *
    * Successful eviction of a frame should decrement the size of replacer and remove the frame's
    * access history.
-   *
+*
    * @param[out] frame_id id of frame that is evicted.
    * @return true if a frame is evicted successfully, false if no frames can be evicted.
    */
@@ -150,12 +176,13 @@ class LRUKReplacer {
  private:
   // TODO(student): implement me! You can replace these member variables as you like.
   // Remove maybe_unused if you start using them.
-  [[maybe_unused]] std::unordered_map<frame_id_t, LRUKNode> node_store_;
-  [[maybe_unused]] size_t current_timestamp_{0};
-  [[maybe_unused]] size_t curr_size_{0};
-  [[maybe_unused]] size_t replacer_size_;
-  [[maybe_unused]] size_t k_;
-  [[maybe_unused]] std::mutex latch_;
+  std::unordered_map<frame_id_t, LRUKNode> node_store_;
+  std::unordered_set<frame_id_t> evictable_set_;
+  size_t current_timestamp_{0};
+  size_t curr_size_{0};
+  size_t replacer_size_;
+  size_t k_;
+  std::mutex latch_;
 };
 
 }  // namespace bustub
