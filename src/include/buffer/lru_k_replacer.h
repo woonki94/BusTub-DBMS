@@ -38,6 +38,7 @@ class LRUKNode {
   auto GetK() const -> size_t { return k_; }
   auto GetFrameId() const -> frame_id_t { return fid_; }
   auto IsEvictable() const -> bool { return is_evictable_; }
+  // TODO(WK): make history private.
   std::list<size_t> history_;
 
   // Function to add a timestamp to history
